@@ -1,5 +1,10 @@
 package vendingmachine
 
+import vendingmachine.domain.VendingMachine
+import vendingmachine.domain.coin.changer.RandomCoinChanger
+import vendingmachine.view.NormalVendingMachineView
+
 fun main() {
-    TODO("프로그램 구현")
+    val vendingMachine = VendingMachine(NormalVendingMachineView(),RandomCoinChanger())
+
 }
