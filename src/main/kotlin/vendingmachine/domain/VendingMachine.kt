@@ -7,6 +7,7 @@ import vendingmachine.excpetion.convertExceptionMessage
 import vendingmachine.excpetion.multiCatch
 import vendingmachine.view.VendingMachineView
 import java.lang.IllegalArgumentException
+import java.lang.NumberFormatException
 import kotlin.IllegalStateException
 
 class VendingMachine(private val vendingMachineView: VendingMachineView,
@@ -28,7 +29,7 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
 
 
     private fun retryFail(block : () -> Unit){
-        block.multiCatch(IllegalArgumentException::class, IllegalStateException::class){
+        block.multiCatch(IllegalArgumentException::class, IllegalStateException::class, NumberFormatException::class){
             println(convertExceptionMessage(it.message?:"Something Problem"))
             retryFail(block)
         }
