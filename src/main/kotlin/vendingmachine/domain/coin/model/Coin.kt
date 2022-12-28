@@ -9,6 +9,10 @@ enum class Coin(private val amount: Int) {
     COIN_50(50),
     COIN_10(10);
 
+    fun getAmount() : Int{
+        return amount
+    }
+
     companion object{
         fun getCoinsAmount() : List<Int>{
             return values().map { it.amount }
