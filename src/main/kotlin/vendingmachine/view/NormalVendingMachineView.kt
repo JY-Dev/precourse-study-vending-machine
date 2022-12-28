@@ -31,7 +31,7 @@ class NormalVendingMachineView(private val productMessageResolver: ProductMessag
 
 
     override fun printVendingMachineRemainCoin(changeCoins: List<ChangeCoin>) {
-        val st = StringBuilder().append("\n")
+        val st = StringBuilder().append("자판기가 보유한 동전\n")
         appendCoinInfo(changeCoins, st)
         println(st)
     }
