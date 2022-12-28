@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import vendingmachine.domain.coin.model.ChangeCoin
 import vendingmachine.domain.product.convertor.ProductMessageResolver
 import vendingmachine.domain.product.model.Product
-import vendingmachine.excpetion.convertErrorMessage
 import java.lang.Exception
 import java.lang.StringBuilder
 
