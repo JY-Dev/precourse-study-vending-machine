@@ -27,4 +27,17 @@ class RandomCoinChangerTest {
         // Then
         Assertions.assertThat(changeCoins[Coin.COIN_500]).isEqualTo(0)
     }
+
+    @Test
+    fun `주어진 돈 만큼 Coin를 반환해줘야 한다`(){
+        //Given
+        val money = 500
+        // When
+        val changeCoins = coinChanger.changeCoins(money)
+        // Then
+        val result = changeCoins.entries.sumOf { it.key.getAmount()*it.value }
+
+        Assertions.assertThat(result).isEqualTo(money)
+
+    }
 }
