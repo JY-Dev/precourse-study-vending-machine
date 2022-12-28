@@ -26,4 +26,9 @@ class NormalVendingMachineView(private val productMessageResolver: ProductMessag
         return productMessageResolver.resolve(message)
     }
 
+    override fun inputMoney(): Int {
+        println("투입 금액을 입력해 주세요.")
+        return Console.readLine().toInt()
+    }
+
 }
