@@ -2,9 +2,11 @@ package vendingmachine.coin
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import vendingmachine.domain.coin.changer.CoinChanger
 import vendingmachine.domain.coin.changer.RandomCoinChanger
 import vendingmachine.domain.coin.model.Coin
+import java.lang.IllegalArgumentException
 
 class RandomCoinChangerTest {
     private val coinChanger : CoinChanger = RandomCoinChanger()
@@ -39,5 +41,11 @@ class RandomCoinChangerTest {
 
         Assertions.assertThat(result).isEqualTo(money)
 
+    }
+
+    @Test
+    fun `주어진 돈이 0이하 일때 IllegalArgumentException이 발생해야한다`(){
+        val money = -1
+        assertThrows<IllegalArgumentException> { coinChanger.changeCoins(money) }
     }
 }
