@@ -22,7 +22,7 @@ enum class Coin(private val amount: Int) {
         }
         fun amountToCoin(amount : Int) : Coin{
             return values().find { it.amount == amount } ?:
-                throw IllegalArgumentException(convertExceptionMessage("Amount에 맞는 Coin이 없습니다."))
+                throw IllegalStateException("Amount에 맞는 Coin이 없습니다.")
         }
     }
 }
