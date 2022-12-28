@@ -6,5 +6,12 @@ enum class Coin(private val amount: Int) {
     COIN_50(50),
     COIN_10(10);
 
-    // 추가 기능 구현
+    companion object{
+        fun getCoinsAmount() : List<Int>{
+            return values().map { it.amount }
+        }
+        fun getCoinsAmount(predicate : (amount : Int) -> Boolean) : List<Int>{
+            return values().map { it.amount }.filter(predicate)
+        }
+    }
 }
