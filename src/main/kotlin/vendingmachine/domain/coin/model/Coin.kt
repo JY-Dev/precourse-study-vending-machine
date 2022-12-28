@@ -1,8 +1,5 @@
 package vendingmachine.domain.coin.model
 
-import vendingmachine.excpetion.convertExceptionMessage
-import java.lang.IllegalArgumentException
-
 enum class Coin(private val amount: Int) {
     COIN_500(500),
     COIN_100(100),

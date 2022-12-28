@@ -4,7 +4,7 @@ import java.lang.Exception
 import kotlin.reflect.KClass
 
 private const val ERROR_MESSAGE = "[ERROR]"
-fun convertExceptionMessage(message: String) : String{
+fun convertErrorMessage(message: String) : String{
     return "$ERROR_MESSAGE $message"
 }
 
