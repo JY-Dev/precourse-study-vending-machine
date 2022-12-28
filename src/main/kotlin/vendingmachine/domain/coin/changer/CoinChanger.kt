@@ -1,4 +1,4 @@
-package vendingmachine.domain.coin
+package vendingmachine.domain.coin.changer
 
 import vendingmachine.domain.coin.model.ChangeCoin
 
