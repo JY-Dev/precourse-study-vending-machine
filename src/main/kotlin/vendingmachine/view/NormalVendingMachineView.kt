@@ -2,8 +2,8 @@ package vendingmachine.view
 
 import camp.nextstep.edu.missionutils.Console
 import vendingmachine.domain.coin.model.ChangeCoin
-import vendingmachine.product.convertor.ProductMessageResolver
-import vendingmachine.product.model.Product
+import vendingmachine.domain.product.convertor.ProductMessageResolver
+import vendingmachine.domain.product.model.Product
 import java.lang.StringBuilder
 
 class NormalVendingMachineView(private val productMessageResolver: ProductMessageResolver) : VendingMachineView {

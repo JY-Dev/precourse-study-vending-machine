@@ -1,6 +1,6 @@
-package vendingmachine.product.convertor
+package vendingmachine.domain.product.convertor
 
-import vendingmachine.product.model.Product
+import vendingmachine.domain.product.model.Product
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 
@@ -35,7 +35,7 @@ class NormalProductMessageResolver : ProductMessageResolver {
             .split(";")
     }
 
-    private fun parseProductString(productInfo : List<String>) : Product{
+    private fun parseProductString(productInfo : List<String>) : Product {
         validation(productInfo)
         val name = productInfo[0]
         val price = productInfo[1].toInt()

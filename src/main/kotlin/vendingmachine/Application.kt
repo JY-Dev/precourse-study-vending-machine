@@ -2,7 +2,7 @@ package vendingmachine
 
 import vendingmachine.domain.VendingMachine
 import vendingmachine.domain.coin.changer.RandomCoinChanger
-import vendingmachine.product.convertor.NormalProductMessageResolver
+import vendingmachine.domain.product.convertor.NormalProductMessageResolver
 import vendingmachine.view.NormalVendingMachineView
 
 fun main() {

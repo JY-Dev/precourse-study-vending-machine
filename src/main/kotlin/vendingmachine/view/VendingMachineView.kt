@@ -1,7 +1,7 @@
 package vendingmachine.view
 
 import vendingmachine.domain.coin.model.ChangeCoin
-import vendingmachine.product.model.Product
+import vendingmachine.domain.product.model.Product
 
 interface VendingMachineView {
     fun inputVendingMachineRemainMoney() : Int
