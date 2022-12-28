@@ -4,11 +4,10 @@ import vendingmachine.domain.coin.changer.CoinChanger
 import vendingmachine.domain.coin.mapper.toChangeCoinList
 import vendingmachine.domain.coin.model.Coin
 import vendingmachine.excpetion.convertExceptionMessage
+import vendingmachine.excpetion.multiCatch
 import vendingmachine.view.VendingMachineView
-import java.lang.Exception
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
-import java.util.IllegalFormatCodePointException
+import kotlin.IllegalStateException
 
 class VendingMachine(private val vendingMachineView: VendingMachineView,
                      private val coinChanger: CoinChanger) {
@@ -29,18 +28,9 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
 
 
     private fun retryFail(block : () -> Unit){
-        try {
-            block()
-        }catch (e : Exception){
-            when(e){
-                is IllegalStateException,
-                is IllegalArgumentException -> {
-                    println(convertExceptionMessage(e.message?:"Something Problem"))
-                    retryFail{
-                        block()
-                    }
-                }
-            }
+        block.multiCatch(IllegalArgumentException::class, IllegalStateException::class){
+            println(convertExceptionMessage(it.message?:"Something Problem"))
+            retryFail(block)
         }
     }
 }
