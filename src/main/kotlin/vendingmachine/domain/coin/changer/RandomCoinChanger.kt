@@ -8,7 +8,7 @@ class RandomCoinChanger : CoinChanger{
         val coinsMap = getCoinsMap()
         var tempMoney = money
         while (tempMoney > 0){
-            val coin = getCoin(money)
+            val coin = getCoin(tempMoney)
             tempMoney-=coin.getAmount()
             saveCoin(coinsMap, coin)
         }
