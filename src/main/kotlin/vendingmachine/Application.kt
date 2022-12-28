@@ -10,5 +10,5 @@ fun main() {
     val vendingMachineView = NormalVendingMachineView(productMessageResolver)
     val coinChanger = RandomCoinChanger()
     val vendingMachine = VendingMachine(vendingMachineView,coinChanger)
-
+    vendingMachine.start()
 }

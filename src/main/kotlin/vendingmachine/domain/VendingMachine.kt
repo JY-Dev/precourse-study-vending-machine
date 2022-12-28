@@ -21,7 +21,7 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
     fun start(){
         initMachine()
         setProducts()
-        purchaseProduct()
+        updateProduct()
     }
 
     private fun initMachine() {
@@ -38,26 +38,60 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
         }
     }
 
-    private fun purchaseProduct(){
-        val inputMoney = vendingMachineView.inputMoney()
-        val remainProducts = products.getRemainProducts()
-        validationPurchase(remainProducts, inputMoney)
-    }
-
-    private fun validationPurchase(
-        remainProducts: Map<Product, Int>,
-        inputMoney: Int
-    ) {
-        if (remainProducts.isEmpty()) {
-            val returnCoins = coins.returnCoins(inputMoney)
-            vendingMachineView.printExitMessage(returnCoins)
+    private fun updateProduct(){
+        var inputMoney = vendingMachineView.inputMoney()
+        execute {
+            while (true){
+                vendingMachineView.printInputMoney(inputMoney)
+                products.validationPurchase(inputMoney)
+                inputMoney = purchase(inputMoney)
+            }
         }
     }
 
+    private fun purchase(inputMoney: Int): Int {
+        val productName = vendingMachineView.inputPurchaseProductName()
+        val product = products.findProductByName(productName)
+        return updateProduct(product, inputMoney)
+    }
+
+    private fun updateProduct(product: Product, inputMoney: Int): Int {
+        val mutableMap = products.toMutableMap()
+        val productCnt = mutableMap[product] ?: 1
+        mutableMap[product] = productCnt.minus(1)
+        products = mutableMap
+        return inputMoney-product.price
+    }
+
+    private fun Product.isPossiblePurchase(money : Int) : Boolean =
+        this.price <= money
+
+    private fun Map<Product, Int>.findProductByName(productName : String) : Product{
+        return this.keys.find { it.name == productName } ?: throw IllegalArgumentException("등록 되지 않은 상품 입니다.")
+    }
+
+    private fun Map<Product,Int>.validationPurchase(inputMoney: Int){
+        this.validationEmptyProduct(inputMoney)
+        val productCnt = this.count { it.value > 0 && it.key.isPossiblePurchase(inputMoney) }
+        if(productCnt == 0)
+            exitMachine(inputMoney)
+    }
+    private fun Map<Product, Int>.validationEmptyProduct(
+        inputMoney: Int
+    ) {
+        if (this.getRemainProducts().isEmpty()) {
+            exitMachine(inputMoney)
+        }
+    }
+
+    private fun exitMachine(inputMoney: Int) {
+        val returnCoins = coins.returnCoins(inputMoney)
+        vendingMachineView.printExitMessage(returnCoins)
+    }
+
     private fun Map<Coin,Int>.returnCoins(remainMoney : Int) : List<ChangeCoin>{
-        val result = mutableListOf<ChangeCoin>()
         val mutableMap = this.toMutableMap()
-        getRemainCoins(this, remainMoney){ coin, amount ->
+        val result = getRemainCoins(this, remainMoney){ coin, amount ->
             mutableMap[coin] = amount
         }
         coins = mutableMap
