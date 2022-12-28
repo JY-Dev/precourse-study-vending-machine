@@ -21,7 +21,7 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
     fun start(){
         initMachine()
         setProducts()
-        updateProduct()
+        userInteraction()
     }
 
     private fun initMachine() {
@@ -38,7 +38,7 @@ class VendingMachine(private val vendingMachineView: VendingMachineView,
         }
     }
 
-    private fun updateProduct(){
+    private fun userInteraction(){
         var inputMoney = vendingMachineView.inputMoney()
         execute {
             while (true){
