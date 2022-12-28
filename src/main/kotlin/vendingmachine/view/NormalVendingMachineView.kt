@@ -11,10 +11,11 @@ class NormalVendingMachineView : VendingMachineView {
     }
 
     override fun printVendingMachineRemainCoin(changeCoins: List<ChangeCoin>) {
-        val st = StringBuilder()
+        val st = StringBuilder().append("\n")
         changeCoins.forEach {
             st.append("${it.coin.getAmount()}원 - ${it.count}개\n")
         }
+        println(st)
     }
 
 }
