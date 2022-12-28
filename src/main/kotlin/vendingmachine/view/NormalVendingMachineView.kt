@@ -24,6 +24,11 @@ class NormalVendingMachineView(private val productMessageResolver: ProductMessag
         return Console.readLine().toInt()
     }
 
+    override fun inputPurchaseProductName() : String {
+        println("구매할 상품명을 입력해 주세요.")
+        return Console.readLine()
+    }
+
 
     override fun printVendingMachineRemainCoin(changeCoins: List<ChangeCoin>) {
         val st = StringBuilder().append("\n")

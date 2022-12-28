@@ -7,12 +7,10 @@ interface VendingMachineView {
     fun inputVendingMachineRemainMoney() : Int
     fun inputVendingMachineProducts() : Map<Product,Int>
     fun inputMoney() : Int
-
+    fun inputPurchaseProductName() : String
 
     fun printVendingMachineRemainCoin(changeCoins : List<ChangeCoin>)
-
     fun printExitMessage(returnCoins : List<ChangeCoin>)
-
     fun printInputMoney(money : Int)
 
 }
