@@ -10,7 +10,7 @@ class NormalCoinRepository : CoinRepository {
 
     override fun returnCoins(remainMoney: Int): List<ChangeCoin> {
         val mutableMap = coins.toMutableMap()
-        val result = getPossibleReturnCoins(coins,remainMoney) { coin, amount ->
+        val result = getPossibleReturnCoins(remainMoney) { coin, amount ->
             mutableMap[coin] = amount
         }
         coins = mutableMap
@@ -18,7 +18,6 @@ class NormalCoinRepository : CoinRepository {
     }
 
     override fun getPossibleReturnCoins(
-        coins : Map<Coin,Int>,
         remainMoney: Int,
         remainCoin: ((coin: Coin, amount: Int) -> Unit)?
     ) : List<ChangeCoin>  {

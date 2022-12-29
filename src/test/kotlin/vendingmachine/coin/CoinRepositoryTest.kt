@@ -22,7 +22,8 @@ class CoinRepositoryTest {
         val arr = arrayOf(ChangeCoin(Coin.COIN_100,0), ChangeCoin(Coin.COIN_50,0))
         val arr2 = arrayListOf(ChangeCoin(Coin.COIN_100,1), ChangeCoin(Coin.COIN_50,3))
         var idx = 0
-        val possibleReturnCoins = coinRepository.getPossibleReturnCoins(coins, money) { coin, amount ->
+        coinRepository.setCoins(coins)
+        val possibleReturnCoins = coinRepository.getPossibleReturnCoins(money) { coin, amount ->
             Assertions.assertThat(ChangeCoin(coin, amount)).isEqualTo(arr[idx++])
         }
         Assertions.assertThat(possibleReturnCoins).isEqualTo(arr2)
