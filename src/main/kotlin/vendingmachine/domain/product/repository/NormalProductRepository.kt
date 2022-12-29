@@ -9,7 +9,7 @@ class NormalProductRepository : ProductRepository {
     override fun purchase(money: Int, productName: String) : Int{
         val product = findProductByName(productName)
         validationPurchaseProduct(product,money)
-        updateProduct(product,money)
+        consumeProduct(product)
         return money-product.price
     }
 
@@ -21,11 +21,16 @@ class NormalProductRepository : ProductRepository {
         this.products = products
     }
 
-    override fun updateProduct(product: Product, inputMoney: Int) {
+    override fun consumeProduct(product: Product) {
         val mutableMap = products.toMutableMap()
         val productCnt = mutableMap[product] ?: 1
         mutableMap[product] = productCnt.minus(1)
         products = mutableMap
+    }
+
+    override fun validationProduct(product: Product) {
+        if(product.price < 100 && product.price % 10 != 0)
+            throw IllegalArgumentException("상품의 설정 가격이 올바르지 않습니다.")
     }
 
     override fun validationPurchaseProducts(inputMoney: Int) : Boolean{
