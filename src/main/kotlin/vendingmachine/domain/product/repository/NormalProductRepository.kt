@@ -18,6 +18,10 @@ class NormalProductRepository : ProductRepository {
     }
 
     override fun setProducts(products: Map<Product, Int>) {
+        products.keys.forEach {
+            println(it)
+            validationProduct(it)
+        }
         this.products = products
     }
 
@@ -29,7 +33,7 @@ class NormalProductRepository : ProductRepository {
     }
 
     override fun validationProduct(product: Product) {
-        if(product.price < 100 && product.price % 10 != 0)
+        if(product.price < 100 || product.price % 10 != 0)
             throw IllegalArgumentException("상품의 설정 가격이 올바르지 않습니다.")
     }
 
