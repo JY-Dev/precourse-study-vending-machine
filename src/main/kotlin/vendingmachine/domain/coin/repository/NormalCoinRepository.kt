@@ -3,7 +3,6 @@ package vendingmachine.domain.coin.repository
 import vendingmachine.domain.coin.mapper.toChangeCoinList
 import vendingmachine.domain.coin.model.ChangeCoin
 import vendingmachine.domain.coin.model.Coin
-import vendingmachine.domain.product.model.Product
 
 class NormalCoinRepository : CoinRepository {
 
